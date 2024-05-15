@@ -12,6 +12,7 @@
         <InputNumber id="breakDuration" @bind-Value="pomodoroSettings.BreakDuration" />
     </div>
     <button type="submit">Start Pomodoro</button>
+    <p>Temps total de travail: @totalWorkMinutes minutes</p>
 </EditForm>
 
 @if (isSessionActive)
@@ -44,7 +45,7 @@
         height: 20px;
         background-color: #76c7c0;
         width: 0;
-        transition: width 1s linear;
+        transition: width 0.5s ease;
     }
 </style>
 
@@ -56,6 +57,7 @@
     private int initialTime;
     private System.Timers.Timer timer;
     private List<string> sessions = new List<string>();
+    private bool loadData = true;
 
     private void StartPomodoro()
     {
@@ -82,16 +84,18 @@
 
         if (remainingTime <= 0)
         {
+            sessions.Add($"{(isWorkSession ? "Work" : "Break")} session completed at {DateTime.Now}");
+            SaveSessionData(); // Save session data after updating sessions list
+
             if (isWorkSession)
             {
-                sessions.Add($"Work session completed at {DateTime.Now}");
+                UpdateWorkTime();
                 remainingTime = pomodoroSettings.BreakDuration * 60;
                 initialTime = remainingTime;
                 isWorkSession = false;
             }
             else
             {
-                sessions.Add($"Break session completed at {DateTime.Now}");
                 timer.Stop();
                 isSessionActive = false;
             }
@@ -105,7 +109,33 @@
 
     private class PomodoroSettings
     {
-        public int WorkDuration { get; set; } = 25; // Default to 25 minutes
-        public int BreakDuration { get; set; } = 5; // Default to 5 minutes
+        public int WorkDuration { get; set; } = 25;
+        public int BreakDuration { get; set; } = 5;
+    }
+
+    private int totalWorkMinutes = 0;
+
+    private void UpdateWorkTime()
+    {
+        totalWorkMinutes += pomodoroSettings.WorkDuration;
+    }
+
+    @inject Blazored.LocalStorage.ILocalStorageService localStorage
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && loadData)
+        {
+            sessions = await localStorage.GetItemAsync<List<string>>("sessions") ?? new List<string>();
+            totalWorkMinutes = await localStorage.GetItemAsync<int>("totalWorkMinutes");
+            loadData = false;
+            StateHasChanged();
+        }
+    }
+
+    private async Task SaveSessionData()
+    {
+        await localStorage.SetItemAsync("sessions", sessions);
+        await localStorage.SetItemAsync("totalWorkMinutes", totalWorkMinutes);
     }
 }
