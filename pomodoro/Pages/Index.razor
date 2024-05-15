@@ -1,5 +1,12 @@
 ﻿@page "/"
 
+@using System.Globalization
+@using System.IO;
+@using CsvHelper;
+@using System.Text
+
+@inject Blazored.LocalStorage.ILocalStorageService localStorage
+
 <h3>Pomodoro Timer</h3>
 
 <EditForm Model="@pomodoroSettings" OnValidSubmit="StartPomodoro">
@@ -58,6 +65,8 @@
     private System.Timers.Timer timer;
     private List<string> sessions = new List<string>();
     private bool loadData = true;
+    private string csvFilePath = "pomodoro.csv";
+    private List<string> sessionHistory = new List<string>();
 
     private void StartPomodoro()
     {
@@ -84,8 +93,8 @@
 
         if (remainingTime <= 0)
         {
-            sessions.Add($"{(isWorkSession ? "Work" : "Break")} session completed at {DateTime.Now}");
-            SaveSessionData(); // Save session data after updating sessions list
+            sessionHistory.Add($"{(isWorkSession ? "Work" : "Break")} session completed at {DateTime.Now}");
+            SaveHistory();
 
             if (isWorkSession)
             {
@@ -120,13 +129,11 @@
         totalWorkMinutes += pomodoroSettings.WorkDuration;
     }
 
-    @inject Blazored.LocalStorage.ILocalStorageService localStorage
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender && loadData)
         {
-            sessions = await localStorage.GetItemAsync<List<string>>("sessions") ?? new List<string>();
+            sessionHistory = await localStorage.GetItemAsync<List<string>>("sessions") ?? new List<string>();
             totalWorkMinutes = await localStorage.GetItemAsync<int>("totalWorkMinutes");
             loadData = false;
             StateHasChanged();
@@ -135,7 +142,40 @@
 
     private async Task SaveSessionData()
     {
-        await localStorage.SetItemAsync("sessions", sessions);
+        await localStorage.SetItemAsync("sessions", sessionHistory);
         await localStorage.SetItemAsync("totalWorkMinutes", totalWorkMinutes);
+    }
+
+    private void SaveHistory()
+    {
+        try
+        {
+            var csv = new StringBuilder();
+            foreach (var session in sessionHistory)
+            {
+                csv.AppendLine(session);
+            }
+            File.WriteAllText(csvFilePath, csv.ToString());
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erreur lors de la sauvegarde de l'historique : {ex.Message}");
+        }
+    }
+
+    private void LoadHistory()
+    {
+        try
+        {
+            if (File.Exists(csvFilePath))
+            {
+                var lines = File.ReadAllLines(csvFilePath);
+                sessionHistory.AddRange(lines);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erreur lors du chargement de l'historique : {ex.Message}");
+        }
     }
 }
