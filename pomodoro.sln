@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pomodoro", "pomodoro\pomodoro.csproj", "{C1156C6C-2771-4660-9BB8-DFD08B7D38DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pomodoro.Tests", "Pomodoro.Tests\Pomodoro.Tests.csproj", "{717C8A04-652A-4823-BE36-D63FC565FF61}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{C1156C6C-2771-4660-9BB8-DFD08B7D38DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1156C6C-2771-4660-9BB8-DFD08B7D38DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1156C6C-2771-4660-9BB8-DFD08B7D38DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{717C8A04-652A-4823-BE36-D63FC565FF61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{717C8A04-652A-4823-BE36-D63FC565FF61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{717C8A04-652A-4823-BE36-D63FC565FF61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{717C8A04-652A-4823-BE36-D63FC565FF61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
