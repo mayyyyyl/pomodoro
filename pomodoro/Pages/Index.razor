@@ -9,25 +9,25 @@
 
 <h3>Pomodoro Timer</h3>
 
-<EditForm Model="@pomodoroSettings" OnValidSubmit="StartPomodoro">
+<EditForm Model="@PomodoroSetting" OnValidSubmit="StartPomodoro">
     <div>
         <label for="workDuration">Work Duration (minutes):</label>
-        <InputNumber id="workDuration" @bind-Value="pomodoroSettings.WorkDuration" />
+        <InputNumber id="workDuration" @bind-Value="PomodoroSetting.WorkDuration" />
     </div>
     <div>
         <label for="breakDuration">Break Duration (minutes):</label>
-        <InputNumber id="breakDuration" @bind-Value="pomodoroSettings.BreakDuration" />
+        <InputNumber id="breakDuration" @bind-Value="PomodoroSetting.BreakDuration" />
     </div>
     <button type="submit">Start Pomodoro</button>
-    <p>Temps total de travail: @totalWorkMinutes minutes</p>
+    <p>Temps total de travail: @TotalWorkMinutes minutes</p>
 </EditForm>
 
-@if (isSessionActive)
+@if (IsSessionActive)
 {
     <h4>@(isWorkSession ? "Work Session" : "Break Session")</h4>
-    <p>@($"{remainingTime / 60:D2}:{remainingTime % 60:D2}")</p>
+    <p>@($"{RemainingTime / 60:D2}:{RemainingTime % 60:D2}")</p>
     <div class="progress-bar">
-        <div class="progress" style="width:@((1 - (double)remainingTime / initialTime) * 100)%"></div>
+        <div class="progress" style="width:@((1 - (double)RemainingTime / initialTime) * 100)%"></div>
     </div>
     <button @onclick="StopPomodoro">Stop</button>
 }
@@ -59,20 +59,25 @@
 @code {
     private bool isWorkSession = true;
     private int initialTime;
-    private System.Timers.Timer timer;
-    private List<string> sessions = new List<string>();
+    private System.Timers.Timer? timer;
+    private readonly List<string> sessions = new List<string>();
     private bool loadData = true;
-    private string csvFilePath = "pomodoro.csv";
+    private readonly string csvFilePath = "pomodoro.csv";
     private List<string> sessionHistory = new List<string>();
+    private int remainingTime;
+    private int totalWorkMinutes = 0;
+    private bool isSessionActive = false;
+    private PomodoroSettings pomodoroSettings = new PomodoroSettings();
 
-    public PomodoroSettings pomodoroSettings = new PomodoroSettings();
-    public int remainingTime;
-    public int totalWorkMinutes = 0;
-    public bool isSessionActive = false;
+    public bool IsSessionActive { get; set; } = false;
+    public PomodoroSettings PomodoroSetting { get; set; } = new PomodoroSettings();
+    public int RemainingTime { get; set; } = 0;
+    public int TotalWorkMinutes { get; set; } = 0;
+    public List<string> SessionHistory { get; set; } = new List<string>();
 
     public void StartPomodoro()
     {
-        isSessionActive = true;
+        IsSessionActive = true;
         isWorkSession = true;
         initialTime = remainingTime = pomodoroSettings.WorkDuration * 60;
         timer = new System.Timers.Timer(1000);
@@ -83,37 +88,37 @@
     public void StopPomodoro()
     {
         timer.Stop();
-        isSessionActive = false;
-        remainingTime = 0;
+        IsSessionActive = false;
+        RemainingTime = 0;
         StateHasChanged();
     }
 
-    private void OnTimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
+    private void OnTimerElapsed(object? sender, System.Timers.ElapsedEventArgs e)
     {
-        remainingTime--;
+        RemainingTime--;
         InvokeAsync(StateHasChanged);
 
-        if (remainingTime <= 0)
+        if (RemainingTime <= 0)
         {
-            sessionHistory.Add($"{(isWorkSession ? "Work" : "Break")} session completed at {DateTime.Now}");
+            SessionHistory.Add($"{(isWorkSession ? "Work" : "Break")} session completed at {DateTime.Now}");
             SaveHistory();
 
             if (isWorkSession)
             {
                 UpdateWorkTime();
-                remainingTime = pomodoroSettings.BreakDuration * 60;
-                initialTime = remainingTime;
+                RemainingTime = pomodoroSettings.BreakDuration * 60;
+                initialTime = RemainingTime;
                 isWorkSession = false;
             }
             else
             {
                 timer.Stop();
-                isSessionActive = false;
+                IsSessionActive = false;
             }
         }
     }
 
-    public void Dispose()
+    public void CleanupTimer()
     {
         timer?.Dispose();
     }
@@ -126,32 +131,26 @@
 
     public void UpdateWorkTime()
     {
-        totalWorkMinutes += pomodoroSettings.WorkDuration;
+        TotalWorkMinutes += pomodoroSettings.WorkDuration;
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender && loadData)
         {
-            sessionHistory = await localStorage.GetItemAsync<List<string>>("sessions") ?? new List<string>();
-            totalWorkMinutes = await localStorage.GetItemAsync<int>("totalWorkMinutes");
+            SessionHistory = await localStorage.GetItemAsync<List<string>>("sessions") ?? new List<string>();
+            TotalWorkMinutes = await localStorage.GetItemAsync<int>("TotalWorkMinutes");
             loadData = false;
             StateHasChanged();
         }
     }
 
-    private async Task SaveSessionData()
-    {
-        await localStorage.SetItemAsync("sessions", sessionHistory);
-        await localStorage.SetItemAsync("totalWorkMinutes", totalWorkMinutes);
-    }
-
-    private void SaveHistory()
+    public void SaveHistory()
     {
         try
         {
             var csv = new StringBuilder();
-            foreach (var session in sessionHistory)
+            foreach (var session in SessionHistory)
             {
                 csv.AppendLine(session);
             }
@@ -160,22 +159,6 @@
         catch (Exception ex)
         {
             Console.WriteLine($"Erreur lors de la sauvegarde de l'historique : {ex.Message}");
-        }
-    }
-
-    private void LoadHistory()
-    {
-        try
-        {
-            if (File.Exists(csvFilePath))
-            {
-                var lines = File.ReadAllLines(csvFilePath);
-                sessionHistory.AddRange(lines);
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Erreur lors du chargement de l'historique : {ex.Message}");
         }
     }
 }

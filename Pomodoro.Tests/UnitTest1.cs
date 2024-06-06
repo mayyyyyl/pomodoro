@@ -7,10 +7,17 @@ namespace Pomodoro.Tests;
 
 public class IndexTests : TestContext
 {
+
+    private readonly Mock<ILocalStorageService> localStorageMock;
+    
+    public interface IFileService
+    {
+        void WriteAllText(string path, string contents);
+    }
+
     public IndexTests()
     {
-        var localStorageMock = new Mock<ILocalStorageService>();
-
+        localStorageMock = new Mock<ILocalStorageService>();
         Services.AddSingleton(localStorageMock.Object);
     }
 
@@ -27,21 +34,20 @@ public class IndexTests : TestContext
         cut.Find("p").MarkupMatches("<p>Temps total de travail: 0 minutes</p>");
     }
 
+
     [Fact]
-    public void StopPomodoro_ShouldStopTimer()
+    public void StopPomodoro_ShouldClearTime()
     {
         // Arrange
         var component = RenderComponent<pomodoro.Pages.Index>();
-        var startButton = component.Find("button[type='submit']");
-        startButton.Click();
-        var stopButton = component.FindAll("button")[1];
+        component.Instance.StartPomodoro();
 
         // Act
-        stopButton.Click();
+        component.Instance.StopPomodoro();
 
         // Assert
-        Assert.False(component.Instance.isSessionActive);
-        Assert.Equal(0, component.Instance.remainingTime);
+        Assert.False(component.Instance.IsSessionActive);
+        Assert.Equal(0, component.Instance.RemainingTime);
     }
 
     [Fact]
@@ -62,12 +68,75 @@ public class IndexTests : TestContext
     {
         // Arrange
         var component = RenderComponent<pomodoro.Pages.Index>();
-        component.Instance.pomodoroSettings.WorkDuration = 25;
+        component.Instance.PomodoroSetting.WorkDuration = 25;
 
         // Act
         component.Instance.UpdateWorkTime();
 
         // Assert
-        Assert.Equal(25, component.Instance.totalWorkMinutes);
+        Assert.Equal(25, component.Instance.TotalWorkMinutes);
+    }
+
+    [Fact]
+    public void SaveHistory_ShouldWriteToCsvFile()
+    {
+        // Arrange
+        var fileServiceMock = new Mock<IFileService>();
+        Services.AddSingleton(fileServiceMock.Object);
+        var component = RenderComponent<pomodoro.Pages.Index>();
+        component.Instance.SessionHistory.Add("Test session");
+
+        // Act
+        component.Instance.SaveHistory();
+
+        // Assert
+        fileServiceMock.Verify(fs => fs.WriteAllText(It.IsAny<string>(), "Test session\n"), Times.Once);
+    }
+
+    [Fact]
+    public void PomodoroSetting_Setter_ShouldUpdateValue()
+    {
+        // Arrange
+        var component = RenderComponent<pomodoro.Pages.Index>();
+        var newSettings = new pomodoro.Pages.Index.PomodoroSettings
+        {
+            WorkDuration = 45,
+            BreakDuration = 15
+        };
+
+        // Act
+        component.Instance.PomodoroSetting = newSettings;
+
+        // Assert
+        Assert.Equal(newSettings, component.Instance.PomodoroSetting);
+    }
+
+    [Fact]
+    public void IndexComponentRendersWorkSession_WhenIsWorkSessionIsTrue()
+    {
+        // Arrange
+        var component = RenderComponent<pomodoro.Pages.Index>();
+        component.Instance.StartPomodoro();
+
+        // Act
+        var result = component.Find("h4").TextContent;
+
+        // Assert
+        Assert.Equal("Work Session", result);
+    }
+
+    [Fact]
+    public void IndexComponentRendersBreakSession_WhenIsWorkSessionIsFalse()
+    {
+        // Arrange
+        var component = RenderComponent<pomodoro.Pages.Index>();
+        component.Instance.StartPomodoro();
+        component.Instance.StopPomodoro(); 
+
+        // Act
+        var result = component.Find("h4").TextContent;
+
+        // Assert
+        Assert.Equal("Break Session", result);
     }
 }
