@@ -59,7 +59,7 @@
 @code {
     private bool isWorkSession = true;
     private int initialTime;
-    private System.Timers.Timer? timer;
+    //private System.Timers.Timer? timer;
     private readonly List<string> sessions = new List<string>();
     private bool loadData = true;
     private readonly string csvFilePath = "pomodoro.csv";
@@ -74,6 +74,8 @@
     public int RemainingTime { get; set; } = 0;
     public int TotalWorkMinutes { get; set; } = 0;
     public List<string> SessionHistory { get; set; } = new List<string>();
+
+    public System.Timers.Timer? timer;
 
     public void StartPomodoro()
     {
@@ -93,7 +95,7 @@
         StateHasChanged();
     }
 
-    private void OnTimerElapsed(object? sender, System.Timers.ElapsedEventArgs e)
+    public void OnTimerElapsed(object? sender, System.Timers.ElapsedEventArgs e)
     {
         RemainingTime--;
         InvokeAsync(StateHasChanged);

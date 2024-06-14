@@ -2,6 +2,8 @@ using Blazored.LocalStorage;
 using Bunit;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
+using Xunit;
+
 
 namespace Pomodoro.Tests;
 
@@ -9,6 +11,7 @@ public class IndexTests : TestContext
 {
 
     private readonly Mock<ILocalStorageService> localStorageMock;
+
     
     public interface IFileService
     {
@@ -35,15 +38,16 @@ public class IndexTests : TestContext
     }
 
 
+
     [Fact]
-    public void StopPomodoro_ShouldClearTime()
+    public async Task StopPomodoro_ShouldClearTime()
     {
         // Arrange
         var component = RenderComponent<pomodoro.Pages.Index>();
-        component.Instance.StartPomodoro();
+        await component.InvokeAsync(() => component.Instance.StartPomodoro());
 
         // Act
-        component.Instance.StopPomodoro();
+        await component.InvokeAsync(() => component.Instance.StopPomodoro());
 
         // Assert
         Assert.False(component.Instance.IsSessionActive);
@@ -112,6 +116,46 @@ public class IndexTests : TestContext
     }
 
     [Fact]
+    public void CleanupTimer_DisposesTimer()
+    {
+        // Arrange
+        var cut = RenderComponent<pomodoro.Pages.Index>();
+        var timer = cut.Instance.timer;
+
+        // Act
+        cut.Instance.CleanupTimer();
+
+        // Assert
+        Assert.Null(timer);
+    }
+
+    [Fact]
+    public async Task OnTimerElapsed_DecreasesRemainingTime()
+    {
+        // Arrange
+        var cut = RenderComponent<pomodoro.Pages.Index>();
+        cut.Instance.PomodoroSetting = new pomodoro.Pages.Index.PomodoroSettings
+        {
+            WorkDuration = 1,   
+            BreakDuration = 1   
+        };
+
+        cut.Instance.StartPomodoro(); 
+        await Task.Delay(1100); 
+
+        var initialRemainingTime = cut.Instance.RemainingTime;
+
+        // Act
+        cut.Instance.OnTimerElapsed(null, null); 
+
+        // Assert
+        Assert.True(cut.Instance.RemainingTime < initialRemainingTime); 
+    }
+
+
+
+
+    [Fact]
     public void IndexComponentRendersWorkSession_WhenIsWorkSessionIsTrue()
     {
         // Arrange
@@ -139,4 +183,9 @@ public class IndexTests : TestContext
         // Assert
         Assert.Equal("Break Session", result);
     }
+
+
+   
+
+
 }
