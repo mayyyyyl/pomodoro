@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<coverage version="1">
+  <file path="C:\Users\mayli\Documents\Epsi\I1\TU\pomodoro\pomodoro\Pages\Error.cshtml">
+    <lineToCover lineNumber="21" covered="false" branchesToCover="2" coveredBranches="0" />
+    <lineToCover lineNumber="22" covered="false" />
+    <lineToCover lineNumber="24" covered="false" />
+    <lineToCover lineNumber="26" covered="false" />
+  </file>
+  <file path="C:\Users\mayli\Documents\Epsi\I1\TU\pomodoro\pomodoro\Data\WeatherForecast.cs">
+    <lineToCover lineNumber="5" covered="false" />
+    <lineToCover lineNumber="7" covered="false" />
+    <lineToCover lineNumber="9" covered="false" />
+    <lineToCover lineNumber="11" covered="false" />
+  </file>
+  <file path="C:\Users\mayli\Documents\Epsi\I1\TU\pomodoro\pomodoro\Data\WeatherForecastService.cs">
+    <lineToCover lineNumber="5" covered="false" />
+    <lineToCover lineNumber="6" covered="false" />
+    <lineToCover lineNumber="7" covered="false" />
+    <lineToCover lineNumber="8" covered="false" />
+    <lineToCover lineNumber="11" covered="false" />
+    <lineToCover lineNumber="12" covered="false" />
+    <lineToCover lineNumber="13" covered="false" />
+    <lineToCover lineNumber="14" covered="false" />
+    <lineToCover lineNumber="15" covered="false" />
+    <lineToCover lineNumber="16" covered="false" />
+    <lineToCover lineNumber="17" covered="false" />
+    <lineToCover lineNumber="18" covered="false" />
+  </file>
+  <file path="C:\Users\mayli\Documents\Epsi\I1\TU\pomodoro\pomodoro\Pages\Counter.razor">
+    <lineToCover lineNumber="7" covered="false" />
+    <lineToCover lineNumber="12" covered="false" />
+    <lineToCover lineNumber="15" covered="false" />
+    <lineToCover lineNumber="16" covered="false" />
+    <lineToCover lineNumber="17" covered="false" />
+  </file>
+  <file path="C:\Users\mayli\Documents\Epsi\I1\TU\pomodoro\pomodoro\Pages\Error.cshtml.cs">
+    <lineToCover lineNumber="11" covered="false" />
+    <lineToCover lineNumber="13" covered="false" />
+    <lineToCover lineNumber="17" covered="false" />
+    <lineToCover lineNumber="18" covered="false" />
+    <lineToCover lineNumber="19" covered="false" />
+    <lineToCover lineNumber="20" covered="false" />
+    <lineToCover lineNumber="23" covered="false" />
+    <lineToCover lineNumber="24" covered="false" branchesToCover="4" coveredBranches="0" />
+    <lineToCover lineNumber="25" covered="false" />
+  </file>
+  <file path="C:\Users\mayli\Documents\Epsi\I1\TU\pomodoro\pomodoro\Pages\FetchData.razor">
+    <lineToCover lineNumber="12" covered="false" branchesToCover="2" coveredBranches="0" />
+    <lineToCover lineNumber="13" covered="false" />
+    <lineToCover lineNumber="15" covered="false" />
+    <lineToCover lineNumber="17" covered="false" />
+    <lineToCover lineNumber="28" covered="false" branchesToCover="2" coveredBranches="0" />
+    <lineToCover lineNumber="29" covered="false" />
+    <lineToCover lineNumber="31" covered="false" />
+    <lineToCover lineNumber="32" covered="false" />
+    <lineToCover lineNumber="33" covered="false" />
+    <lineToCover lineNumber="34" covered="false" />
+    <lineToCover lineNumber="36" covered="false" />
+    <lineToCover lineNumber="39" covered="false" />
+    <lineToCover lineNumber="45" covered="false" />
+    <lineToCover lineNumber="46" covered="false" />
+    <lineToCover lineNumber="47" covered="false" />
+  </file>
+  <file path="C:\Users\mayli\Documents\Epsi\I1\TU\pomodoro\pomodoro\Pages\Index.razor">
+    <lineToCover lineNumber="20" covered="true" />
+    <lineToCover lineNumber="22" covered="true" />
+    <lineToCover lineNumber="23" covered="true" branchesToCover="2" coveredBranches="2" />
+    <lineToCover lineNumber="24" covered="true" />
+    <lineToCover lineNumber="25" covered="true" branchesToCover="2" coveredBranches="2" />
+    <lineToCover lineNumber="26" covered="true" />
+    <lineToCover lineNumber="27" covered="true" branchesToCover="2" coveredBranches="2" />
+    <lineToCover lineNumber="28" covered="true" />
+    <lineToCover lineNumber="31" covered="true" />
+    <lineToCover lineNumber="33" covered="true" />
+    <lineToCover lineNumber="35" covered="true" branchesToCover="2" coveredBranches="1" />
+    <lineToCover lineNumber="36" covered="false" />
+    <lineToCover lineNumber="37" covered="true" branchesToCover="2" coveredBranches="1" />
+    <lineToCover lineNumber="38" covered="false" />
+    <lineToCover lineNumber="39" covered="false" />
+    <lineToCover lineNumber="40" covered="false" />
+    <lineToCover lineNumber="58" covered="true" />
+    <lineToCover lineNumber="60" covered="true" />
+    <lineToCover lineNumber="61" covered="true" />
+    <lineToCover lineNumber="63" covered="true" />
+    <lineToCover lineNumber="64" covered="true" />
+    <lineToCover lineNumber="65" covered="true" />
+    <lineToCover lineNumber="66" covered="true" />
+    <lineToCover lineNumber="67" covered="true" />
+    <lineToCover lineNumber="68" covered="true" />
+    <lineToCover lineNumber="69" covered="true" />
+    <lineToCover lineNumber="70" covered="true" />
+    <lineToCover lineNumber="71" covered="true" />
+    <lineToCover lineNumber="72" covered="true" branchesToCover="2" coveredBranches="2" />
+    <lineToCover lineNumber="73" covered="true" />
+    <lineToCover lineNumber="74" covered="true" />
+    <lineToCover lineNumber="75" covered="true" />
+    <lineToCover lineNumber="76" covered="true" />
+    <lineToCover lineNumber="77" covered="true" />
+    <lineToCover lineNumber="78" covered="true" />
+    <lineToCover lineNumber="79" covered="true" />
+    <lineToCover lineNumber="80" covered="true" />
+    <lineToCover lineNumber="81" covered="true" />
+    <lineToCover lineNumber="82" covered="true" />
+    <lineToCover lineNumber="83" covered="true" />
+    <lineToCover lineNumber="84" covered="true" />
+    <lineToCover lineNumber="85" covered="true" />
+    <lineToCover lineNumber="86" covered="true" />
+    <lineToCover lineNumber="87" covered="true" branchesToCover="2" coveredBranches="1" />
+    <lineToCover lineNumber="88" covered="true" />
+    <lineToCover lineNumber="89" covered="true" />
+    <lineToCover lineNumber="90" covered="true" branchesToCover="2" coveredBranches="1" />
+    <lineToCover lineNumber="91" covered="true" />
+    <lineToCover lineNumber="92" covered="true" />
+    <lineToCover lineNumber="93" covered="true" />
+    <lineToCover lineNumber="94" covered="true" />
+    <lineToCover lineNumber="95" covered="true" />
+    <lineToCover lineNumber="96" covered="true" />
+    <lineToCover lineNumber="97" covered="true" />
+    <lineToCover lineNumber="98" covered="true" branchesToCover="2" coveredBranches="2" />
+    <lineToCover lineNumber="99" covered="true" />
+    <lineToCover lineNumber="100" covered="true" branchesToCover="2" coveredBranches="1" />
+    <lineToCover lineNumber="101" covered="true" branchesToCover="2" coveredBranches="2" />
+    <lineToCover lineNumber="102" covered="true" branchesToCover="2" coveredBranches="0" />
+    <lineToCover lineNumber="103" covered="true" branchesToCover="2" coveredBranches="1" />
+    <lineToCover lineNumber="104" covered="true" branchesToCover="2" coveredBranches="0" />
+    <lineToCover lineNumber="105" covered="true" />
+    <lineToCover lineNumber="106" covered="true" branchesToCover="2" coveredBranches="1" />
+    <lineToCover lineNumber="107" covered="true" branchesToCover="2" coveredBranches="0" />
+    <lineToCover lineNumber="108" covered="true" />
+    <lineToCover lineNumber="109" covered="true" />
+    <lineToCover lineNumber="110" covered="true" />
+    <lineToCover lineNumber="111" covered="true" branchesToCover="2" coveredBranches="0" />
+    <lineToCover lineNumber="112" covered="true" branchesToCover="2" coveredBranches="0" />
+    <lineToCover lineNumber="113" covered="true" branchesToCover="2" coveredBranches="0" />
+    <lineToCover lineNumber="114" covered="true" />
+    <lineToCover lineNumber="115" covered="true" branchesToCover="2" coveredBranches="0" />
+    <lineToCover lineNumber="116" covered="true" branchesToCover="2" coveredBranches="0" />
+    <lineToCover lineNumber="117" covered="false" />
+    <lineToCover lineNumber="118" covered="true" />
+    <lineToCover lineNumber="119" covered="true" />
+    <lineToCover lineNumber="120" covered="false" branchesToCover="2" coveredBranches="0" />
+    <lineToCover lineNumber="121" covered="false" branchesToCover="2" coveredBranches="0" />
+    <lineToCover lineNumber="122" covered="true" />
+    <lineToCover lineNumber="123" covered="true" branchesToCover="2" coveredBranches="1" />
+    <lineToCover lineNumber="124" covered="true" branchesToCover="2" coveredBranches="0" />
+    <lineToCover lineNumber="125" covered="true" branchesToCover="2" coveredBranches="0" />
+    <lineToCover lineNumber="126" covered="true" branchesToCover="2" coveredBranches="0" />
+    <lineToCover lineNumber="127" covered="false" />
+    <lineToCover lineNumber="128" covered="true" />
+    <lineToCover lineNumber="129" covered="true" />
+    <lineToCover lineNumber="130" covered="true" />
+    <lineToCover lineNumber="131" covered="true" />
+    <lineToCover lineNumber="132" covered="true" />
+    <lineToCover lineNumber="133" covered="true" branchesToCover="2" coveredBranches="1" />
+    <lineToCover lineNumber="134" covered="true" />
+    <lineToCover lineNumber="135" covered="true" />
+    <lineToCover lineNumber="136" covered="true" branchesToCover="4" coveredBranches="4" />
+    <lineToCover lineNumber="137" covered="true" />
+    <lineToCover lineNumber="138" covered="true" branchesToCover="2" coveredBranches="2" />
+    <lineToCover lineNumber="139" covered="true" branchesToCover="4" coveredBranches="4" />
+    <lineToCover lineNumber="140" covered="true" branchesToCover="4" coveredBranches="4" />
+    <lineToCover lineNumber="141" covered="true" branchesToCover="2" coveredBranches="2" />
+    <lineToCover lineNumber="142" covered="true" branchesToCover="2" coveredBranches="2" />
+    <lineToCover lineNumber="143" covered="true" branchesToCover="2" coveredBranches="0" />
+    <lineToCover lineNumber="144" covered="true" />
+    <lineToCover lineNumber="145" covered="true" />
+    <lineToCover lineNumber="146" covered="true" />
+    <lineToCover lineNumber="147" covered="true" />
+    <lineToCover lineNumber="148" covered="true" />
+    <lineToCover lineNumber="149" covered="true" branchesToCover="4" coveredBranches="4" />
+    <lineToCover lineNumber="150" covered="true" branchesToCover="2" coveredBranches="2" />
+    <lineToCover lineNumber="151" covered="true" branchesToCover="2" coveredBranches="2" />
+    <lineToCover lineNumber="152" covered="true" />
+    <lineToCover lineNumber="153" covered="true" branchesToCover="2" coveredBranches="2" />
+    <lineToCover lineNumber="154" covered="true" branchesToCover="2" coveredBranches="2" />
+    <lineToCover lineNumber="155" covered="true" />
+    <lineToCover lineNumber="156" covered="true" />
+    <lineToCover lineNumber="157" covered="true" />
+    <lineToCover lineNumber="158" covered="true" />
+    <lineToCover lineNumber="159" covered="true" branchesToCover="4" coveredBranches="4" />
+    <lineToCover lineNumber="160" covered="true" />
+    <lineToCover lineNumber="161" covered="true" branchesToCover="2" coveredBranches="2" />
+    <lineToCover lineNumber="162" covered="true" />
+    <lineToCover lineNumber="163" covered="true" branchesToCover="2" coveredBranches="2" />
+    <lineToCover lineNumber="164" covered="true" />
+    <lineToCover lineNumber="165" covered="true" />
+    <lineToCover lineNumber="166" covered="true" />
+    <lineToCover lineNumber="167" covered="true" />
+    <lineToCover lineNumber="168" covered="true" />
+    <lineToCover lineNumber="169" covered="false" />
+    <lineToCover lineNumber="170" covered="false" />
+    <lineToCover lineNumber="171" covered="false" />
+    <lineToCover lineNumber="172" covered="false" />
+    <lineToCover lineNumber="173" covered="true" branchesToCover="2" coveredBranches="0" />
+    <lineToCover lineNumber="174" covered="false" />
+  </file>
+  <file path="C:\Users\mayli\Documents\Epsi\I1\TU\pomodoro\pomodoro\Pages\_Host.cshtml">
+    <lineToCover lineNumber="5" covered="false" />
+    <lineToCover lineNumber="8" covered="false" branchesToCover="2" coveredBranches="0" />
+  </file>
+  <file path="C:\Users\mayli\Documents\Epsi\I1\TU\pomodoro\pomodoro\Pages\_Layout.cshtml">
+    <lineToCover lineNumber="14" covered="false" branchesToCover="4" coveredBranches="0" />
+    <lineToCover lineNumber="18" covered="false" branchesToCover="4" coveredBranches="0" />
+  </file>
+  <file path="C:\Users\mayli\Documents\Epsi\I1\TU\pomodoro\pomodoro\Shared\MainLayout.razor">
+    <lineToCover lineNumber="16" covered="false" />
+  </file>
+  <file path="C:\Users\mayli\Documents\Epsi\I1\TU\pomodoro\pomodoro\Shared\NavMenu.razor">
+    <lineToCover lineNumber="21" covered="false" />
+    <lineToCover lineNumber="23" covered="false" branchesToCover="2" coveredBranches="0" />
+    <lineToCover lineNumber="26" covered="false" />
+    <lineToCover lineNumber="27" covered="false" />
+    <lineToCover lineNumber="28" covered="false" />
+  </file>
+  <file path="C:\Users\mayli\Documents\Epsi\I1\TU\pomodoro\pomodoro\Shared\SurveyPrompt.razor">
+    <lineToCover lineNumber="3" covered="false" />
+    <lineToCover lineNumber="15" covered="false" />
+  </file>
+  <file path="C:\Users\mayli\Documents\Epsi\I1\TU\pomodoro\pomodoro\Program.cs">
+    <lineToCover lineNumber="6" covered="false" />
+    <lineToCover lineNumber="9" covered="false" />
+    <lineToCover lineNumber="10" covered="false" />
+    <lineToCover lineNumber="11" covered="false" />
+    <lineToCover lineNumber="12" covered="false" />
+    <lineToCover lineNumber="14" covered="false" />
+    <lineToCover lineNumber="17" covered="false" branchesToCover="2" coveredBranches="0" />
+    <lineToCover lineNumber="18" covered="false" />
+    <lineToCover lineNumber="19" covered="false" />
+    <lineToCover lineNumber="21" covered="false" />
+    <lineToCover lineNumber="22" covered="false" />
+    <lineToCover lineNumber="24" covered="false" />
+    <lineToCover lineNumber="26" covered="false" />
+    <lineToCover lineNumber="28" covered="false" />
+    <lineToCover lineNumber="30" covered="false" />
+    <lineToCover lineNumber="31" covered="false" />
+    <lineToCover lineNumber="33" covered="false" />
+  </file>
+</coverage>
